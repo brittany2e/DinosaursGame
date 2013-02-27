@@ -18,44 +18,34 @@ namespace DinosaursGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-        }
 
-        private BasicEffect effect;
+        }
 
         protected override void Initialize()
         {
-            effect = new BasicEffect(
-               graphics.GraphicsDevice);
-            effect.AmbientLightColor = Vector3.One;
-            effect.DirectionalLight0.Enabled = true;
-            effect.DirectionalLight0.DiffuseColor =
-                                        Vector3.One;
-            effect.DirectionalLight0.Direction =
-                     Vector3.Normalize(Vector3.One);
-            effect.LightingEnabled = true;
+            Player p1 = new Player(this, new Vector3(0, -400, -1000));
+            Tree t1 = new Tree(this, new Vector3(400, 0, 1000));
+            Shrubbery s1 = new Shrubbery(this, new Vector3(300, -200, 1000));
+
+            // Add the player as a component, so the update and draw methods
+            // are called.
+            Components.Add(p1);
+            Components.Add(t1);
+            Components.Add(s1);
 
             base.Initialize();
         }
-
-        // Set the 3D model to draw.
-        Model myModel;
-
-        // The aspect ratio determines how to scale 3d to 2d projection.
-        float aspectRatio;
 
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            myModel = Content.Load<Model>("Models\\Apatosaurus06_rig");
-            aspectRatio = (float)graphics.GraphicsDevice.Viewport.Width /
-            (float)graphics.GraphicsDevice.Viewport.Height;
         }
 
         protected override void UnloadContent()
@@ -69,43 +59,13 @@ namespace DinosaursGame
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            //modelRotation += (float)gameTime.ElapsedGameTime.TotalMilliseconds * MathHelper.ToRadians(0.1f);
-
             base.Update(gameTime);
         }
-
-
-        // Set the position of the model in world space, and set the rotation.
-        Vector3 modelPosition = Vector3.Zero;
-        float modelRotation = 0.0f;
-
-        // Set the position of the camera in world space, for our view matrix.
-        Vector3 cameraPosition = new Vector3(0.0f, 50.0f, 2000.0f);
 
         protected override void Draw(GameTime gameTime)
         {
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // Copy any parent transforms.
-            Matrix[] transforms = new Matrix[myModel.Bones.Count];
-            myModel.CopyAbsoluteBoneTransformsTo(transforms);
-
-            // Draw the model. A model can have multiple meshes, so loop.
-            foreach (ModelMesh mesh in myModel.Meshes)
-            {
-                // This is where the mesh orientation is set, as well as our camera and projection.
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.EnableDefaultLighting();
-                    effect.World = transforms[mesh.ParentBone.Index] * Matrix.CreateRotationY(modelRotation)
-                        * Matrix.CreateTranslation(modelPosition);
-                    effect.View = Matrix.CreateLookAt(cameraPosition, Vector3.Zero, Vector3.Up);
-                    effect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f),
-                        aspectRatio, 1.0f, 10000.0f);
-                }
-                // Draw the mesh, using the effects set above.
-                mesh.Draw();
-            }
             base.Draw(gameTime);
         }
 

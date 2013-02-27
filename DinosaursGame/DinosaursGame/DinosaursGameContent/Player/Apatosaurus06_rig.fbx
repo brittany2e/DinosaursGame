@@ -2032,7 +2032,7 @@ Objects:  {
 		}
 		UseMipMap: 0
 		Filename: "/Users/stefaniedao/Documents/Models/Dinosaurs/Apatosaurus/tex/Checkers.png"
-		RelativeFilename: "../tex/Checkers.png"
+		RelativeFilename: "./purple leather.jpg"
 	}
 	Texture: 4306266112, "Texture::Checkers.png", "" {
 		Type: "TextureVideoClip"
@@ -2040,7 +2040,7 @@ Objects:  {
 		TextureName: "Texture::Checkers.png"
 		Media: "Video::Checkers.png"
 		FileName: "/Users/stefaniedao/Documents/Models/Dinosaurs/Apatosaurus/tex/Checkers.png"
-		RelativeFilename: "../tex/Checkers.png"
+		RelativeFilename: "./purple leather.jpg"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
 		Texture_Alpha_Source: "None"

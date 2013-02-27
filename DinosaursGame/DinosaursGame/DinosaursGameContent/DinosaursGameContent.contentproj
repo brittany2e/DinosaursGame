@@ -42,35 +42,65 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Apatosaurus_anim_walk.fbx">
+    <Compile Include="Player\Apatosaurus_anim_walk.fbx">
       <Name>Apatosaurus_anim_walk</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Apatosaurus_anim_headbob.fbx">
+    <Compile Include="Player\Apatosaurus_anim_headbob.fbx">
       <Name>Apatosaurus_anim_headbob</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="tex\Checkers.png">
+    <Compile Include="Player\Checkers.png">
       <Name>Checkers</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Apatosaurus06_rig.fbx">
+    <Compile Include="Player\Apatosaurus06_rig.fbx">
       <Name>Apatosaurus06_rig</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Texures\" />
+    <Compile Include="Environment\Checkers.png">
+      <Name>Checkers</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Environment\Palm Tree.fbx">
+      <Name>Palm Tree</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Environment\Sago Palm.fbx">
+      <Name>Sago Palm</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Environment\Pineapple.jpg">
+      <Name>Pineapple</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Player\purple leather.jpg">
+      <Name>purple leather</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
