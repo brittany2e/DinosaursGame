@@ -15,20 +15,21 @@ namespace DinosaursGame
     class Player : DrawableGameComponent
     {
         // Set the 3D model to draw.
-        Model myModel;
-        
+        private Model myModel;
+        private ModelBone headBone;
+
         // The aspect ratio determines how to scale 3d to 2d projection.
-        float aspectRatio;
+        private float aspectRatio;
 
         private BasicEffect effect;
 
         // Set the position of the model in world space, and set the rotation.
-        Vector3 modelPosition = Vector3.Zero;
-        float modelRotation = -0.5f;
+        private Vector3 modelPosition = Vector3.Zero;
+        private float modelRotation = -0.5f;
 
         // Set the position of the camera in world space, for our view matrix.
         Vector3 cameraPosition = new Vector3(0.0f, 50.0f, 2000.0f);
-
+        
         public Player(Game game)
             : base(game)
         {
@@ -60,6 +61,9 @@ namespace DinosaursGame
             base.LoadContent();
 
             myModel = Game.Content.Load<Model>("Player/Apatosaurus06_rig");
+
+            headBone = myModel.Bones["Head"];
+        
             aspectRatio = (float) Game.GraphicsDevice.Viewport.Width /
             (float)Game.GraphicsDevice.Viewport.Height;
         }
@@ -67,6 +71,7 @@ namespace DinosaursGame
         public override void Update(GameTime gameTime)
         {
             
+
             base.Update(gameTime);
 
         }
@@ -93,6 +98,12 @@ namespace DinosaursGame
                 // Draw the mesh, using the effects set above.
                 mesh.Draw();
             }
+
+            // Move just the head
+            Vector3 oringalTrans = headBone.Transform.Translation;
+            headBone.Transform *= Matrix.CreateTranslation(new Vector3(1000, 1000, 1000));
+            Vector3 newTrans = headBone.Transform.Translation;
+            headBone.Transform *= Matrix.CreateTranslation(oringalTrans - newTrans);
 
             base.Draw(gameTime);
         }

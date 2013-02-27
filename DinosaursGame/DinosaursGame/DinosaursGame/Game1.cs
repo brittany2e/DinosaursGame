@@ -30,8 +30,8 @@ namespace DinosaursGame
         protected override void Initialize()
         {
             Player p1 = new Player(this, new Vector3(0, -400, -1000));
-            Tree t1 = new Tree(this, new Vector3(400, 0, 1000));
-            Shrubbery s1 = new Shrubbery(this, new Vector3(300, -200, 1000));
+            Tree t1 = new Tree(this, new Vector3(400, 50, 1000));
+            Shrubbery s1 = new Shrubbery(this, new Vector3(300, -150, 1000));
 
             // Add the player as a component, so the update and draw methods
             // are called.
