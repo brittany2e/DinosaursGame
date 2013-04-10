@@ -18,13 +18,14 @@ namespace DinosaursGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+        Player player;
+        DebugOut debug;
+        float fun = 8000;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
         }
 
         protected override void Initialize()
@@ -34,8 +35,14 @@ namespace DinosaursGame
 
             // Add the player as a component, so the update and draw methods
             // are called.
-            Player p1 = new Player(this);//, new Vector3(0, -400, -1000));
-            Components.Add(p1);
+            player = new Player(this);//, new Vector3(0, -400, -1000));
+            Components.Add(player);
+
+            debug = new DebugOut(this);
+            Components.Add(debug);
+
+            debug.setData("Hello", "myFriend");
+            //debug.addData("fun", 9001f);
 
             base.Initialize();
         }
@@ -53,11 +60,33 @@ namespace DinosaursGame
 
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                this.Exit();
+            // Analyze keyboard input
+            keyboardInput();
+
+            fun++;
+            debug.setData("fun", string.Format("{0}", fun));
 
             base.Update(gameTime);
+        }
+
+        private void keyboardInput()
+        {
+            KeyboardState state = Keyboard.GetState();
+
+            // Allows the game to exit
+            if (state.IsKeyDown(Keys.Escape))
+            {
+                this.Exit();
+            }
+            if (state.IsKeyDown(Keys.Space))
+            {
+                player.goTo(new Vector3(400, 50, 1000));
+            }
+            if (state.IsKeyUp(Keys.Space))
+            {
+                player.goTo(Vector3.Zero);
+            }
+
         }
 
         protected override void Draw(GameTime gameTime)
