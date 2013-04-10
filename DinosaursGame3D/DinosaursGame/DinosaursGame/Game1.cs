@@ -18,9 +18,11 @@ namespace DinosaursGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        KeyboardState prevState;
+
+        Camera camera;
         Player player;
         DebugOut debug;
-        float fun = 8000;
 
         public Game1()
         {
@@ -30,19 +32,22 @@ namespace DinosaursGame
 
         protected override void Initialize()
         {
+            this.IsMouseVisible = true;
+            
+            prevState = Keyboard.GetState();
+
+            //camera = new Camera();
+
             LandscapeGenerator level = new LandscapeGenerator(this);
             level.Generate();
 
             // Add the player as a component, so the update and draw methods
             // are called.
-            player = new Player(this);//, new Vector3(0, -400, -1000));
+            player = new Player(this, Vector3.Zero);//, new Vector3(0, -400, -1000));
             Components.Add(player);
 
             debug = new DebugOut(this);
             Components.Add(debug);
-
-            debug.setData("Hello", "myFriend");
-            //debug.addData("fun", 9001f);
 
             base.Initialize();
         }
@@ -63,8 +68,8 @@ namespace DinosaursGame
             // Analyze keyboard input
             keyboardInput();
 
-            fun++;
-            debug.setData("fun", string.Format("{0}", fun));
+            debug.setData("Player Position", string.Format("{0}", player.position));
+            //debug.setData("Camera Position", string.Format("{0}", camera.position));
 
             base.Update(gameTime);
         }
@@ -78,14 +83,24 @@ namespace DinosaursGame
             {
                 this.Exit();
             }
-            if (state.IsKeyDown(Keys.Space))
+            if (state.IsKeyDown(Keys.NumPad8))
             {
-                player.goTo(new Vector3(400, 50, 1000));
+                player.goTo(Util.vec3sum(player.position, new Vector3(0, 0, 10)));
             }
-            if (state.IsKeyUp(Keys.Space))
+            if (state.IsKeyDown(Keys.NumPad2))
             {
-                player.goTo(Vector3.Zero);
+                player.goTo(Util.vec3sum(player.position, new Vector3(0, 0, -10)));
             }
+            if (state.IsKeyDown(Keys.NumPad4))
+            {
+                player.goTo(Util.vec3sum(player.position, new Vector3(-10, 0, 0)));
+            }
+            if (state.IsKeyDown(Keys.NumPad6))
+            {
+                player.goTo(Util.vec3sum(player.position, new Vector3(10, 0, 0)));
+            }
+
+            prevState = state;
 
         }
 

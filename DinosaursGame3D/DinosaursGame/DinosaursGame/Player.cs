@@ -24,9 +24,9 @@ namespace DinosaursGame
         private BasicEffect effect;
 
         // Set the position of the model in world space, and set the rotation.
-        private Vector3 position = Vector3.Zero;
+        public Vector3 position = Vector3.Zero;
         private float rotation = 0.0f; //-0.5f;
-        private float maxSpeed = 100.0f;
+        private float maxSpeed = 5.0f;
         private Vector2 currentVelocity = Vector2.Zero;
 
         // Set the position of the camera in world space, for our view matrix.
@@ -109,6 +109,7 @@ namespace DinosaursGame
 
         public void goTo(Vector3 destination)
         {
+            /*
             // Normalize the distance vector between the
             // current position and the destination position.
             float angle = (float)Math.Atan((destination.Y - position.Y) / (destination.X - position.X));
@@ -120,6 +121,11 @@ namespace DinosaursGame
 
             currentVelocity.X = (float)(maxSpeed * Math.Cos(angle));
             currentVelocity.Y = (float)(maxSpeed * Math.Sin(angle));
+
+            position.X = position.X + currentVelocity.X;
+            position.Y = position.Y + currentVelocity.Y;
+             */
+            position = destination;
         }
 
 

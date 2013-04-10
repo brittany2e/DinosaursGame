@@ -116,6 +116,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Shrubbery.cs" />
     <Compile Include="Tree.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
