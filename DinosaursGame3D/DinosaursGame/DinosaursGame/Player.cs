@@ -25,9 +25,11 @@ namespace DinosaursGame
 
         // Set the position of the model in world space, and set the rotation.
         public Vector3 position = Vector3.Zero;
-        private float rotation = 0.0f; //-0.5f;
+        public Vector3 prevPosition = Vector3.Zero;
+        private Vector3 destination = Vector3.Zero;
+        public float rotation = 3.14f; //-0.5f;
         private float maxSpeed = 5.0f;
-        private Vector2 currentVelocity = Vector2.Zero;
+        private Vector3 currentVelocity = Vector3.Zero;
 
         // Set the position of the camera in world space, for our view matrix.
         Vector3 cameraPosition = new Vector3(0.0f, 50.0f, 2000.0f);
@@ -41,6 +43,7 @@ namespace DinosaursGame
             : base(game)
         {
             this.position = position;
+            prevPosition = position;
         }
 
         public override void Initialize()
@@ -73,6 +76,39 @@ namespace DinosaursGame
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            TurnTowardDestination();
+            MoveTowardDestination();
+        }
+
+        private void TurnTowardDestination()
+        {
+            if (destination.X - position.X != 0)
+            {
+                float angle = (float)Math.Atan((destination.Z - position.Z) / (destination.X - position.X));
+                //float angle = (float)Math.Atan((position.Z - prevPosition.Z) / (position.X - prevPosition.X));
+                if (position.X < prevPosition.X)
+                {
+                    angle += (float)Math.PI;
+                }
+                
+                rotation = angle;
+            }
+        }
+
+        private void MoveTowardDestination()
+        {
+            //currentVelocity.X = (float)(maxSpeed * Math.Cos(angle));
+            //currentVelocity.Y = (float)(maxSpeed * Math.Sin(angle));
+            //currentVelocity = Util.Vec3Diff(position, destination);
+
+            // Make sure the player is not traveling too fast
+            //currentVelocity.X = (currentVelocity.X > maxSpeed) ? maxSpeed : currentVelocity.X;
+            //currentVelocity.Y = (currentVelocity.Y > maxSpeed) ? maxSpeed : currentVelocity.Y;
+            //currentVelocity.Z = (currentVelocity.Z > maxSpeed) ? maxSpeed : currentVelocity.Z;
+
+            //position = Util.Vec3Sum(position, currentVelocity); // destination;
+            prevPosition = position;
+            position = destination;
         }
 
         public override void Draw(GameTime gameTime)
@@ -109,23 +145,7 @@ namespace DinosaursGame
 
         public void goTo(Vector3 destination)
         {
-            /*
-            // Normalize the distance vector between the
-            // current position and the destination position.
-            float angle = (float)Math.Atan((destination.Y - position.Y) / (destination.X - position.X));
-
-            if (destination.X < position.X)
-            {
-                angle += (float)Math.PI;
-            }
-
-            currentVelocity.X = (float)(maxSpeed * Math.Cos(angle));
-            currentVelocity.Y = (float)(maxSpeed * Math.Sin(angle));
-
-            position.X = position.X + currentVelocity.X;
-            position.Y = position.Y + currentVelocity.Y;
-             */
-            position = destination;
+            this.destination = destination;
         }
 
 

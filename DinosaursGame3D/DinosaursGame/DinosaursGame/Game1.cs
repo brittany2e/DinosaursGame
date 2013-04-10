@@ -69,6 +69,7 @@ namespace DinosaursGame
             keyboardInput();
 
             debug.setData("Player Position", string.Format("{0}", player.position));
+            debug.setData("Player Rotation", string.Format("{0}", player.rotation));
             //debug.setData("Camera Position", string.Format("{0}", camera.position));
 
             base.Update(gameTime);
@@ -83,23 +84,44 @@ namespace DinosaursGame
             {
                 this.Exit();
             }
-            if (state.IsKeyDown(Keys.NumPad8))
+            // Use the arrow keys to move relatice to the player's current position.
+            if (state.IsKeyDown(Keys.Up))
             {
-                player.goTo(Util.vec3sum(player.position, new Vector3(0, 0, 10)));
+                player.goTo(Util.Vec3Sum(player.position, new Vector3(0, 0, -10)));
+            }
+            if (state.IsKeyDown(Keys.Down))
+            {
+                player.goTo(Util.Vec3Sum(player.position, new Vector3(0, 0, 10)));
+            }
+            if (state.IsKeyDown(Keys.Left))
+            {
+                player.goTo(Util.Vec3Sum(player.position, new Vector3(-10, 0, 0)));
+            }
+            if (state.IsKeyDown(Keys.Right))
+            {
+                player.goTo(Util.Vec3Sum(player.position, new Vector3(10, 0, 0)));
+            }
+            // Preset locations
+            if (state.IsKeyDown(Keys.NumPad1))
+            {
+                player.goTo(new Vector3(500, 0, -500));
             }
             if (state.IsKeyDown(Keys.NumPad2))
             {
-                player.goTo(Util.vec3sum(player.position, new Vector3(0, 0, -10)));
+                player.goTo(new Vector3(-1000, 0, 100));
+            }
+            if (state.IsKeyDown(Keys.NumPad3))
+            {
+                player.goTo(new Vector3(-500, 0, -2500));
             }
             if (state.IsKeyDown(Keys.NumPad4))
             {
-                player.goTo(Util.vec3sum(player.position, new Vector3(-10, 0, 0)));
+                player.goTo(new Vector3(2000, 0, -2000));
             }
-            if (state.IsKeyDown(Keys.NumPad6))
+            if (state.IsKeyDown(Keys.NumPad5))
             {
-                player.goTo(Util.vec3sum(player.position, new Vector3(10, 0, 0)));
+                player.goTo(new Vector3(0, 0, 0));
             }
-
             prevState = state;
 
         }
