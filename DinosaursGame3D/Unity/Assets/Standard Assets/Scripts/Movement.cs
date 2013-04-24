@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		closeEnough = true;
+		destination = transform.position;
 	}
 	
 	// Update is called once per frame
