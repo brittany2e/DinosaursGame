@@ -1,17 +1,15 @@
 using UnityEngine;
 using System.Collections;
 
-public class Movement : MonoBehaviour {
+public class ClickToMove : MonoBehaviour {
 	
 	float speed = 6f;
-	bool closeEnough;
 	public float tolerance = 0.1f;
 	Vector3 destination;
 	Vector3 prevPosition;
 	
 	// Use this for initialization
 	void Start () {
-		closeEnough = true;
 		destination = transform.position;
 		prevPosition = transform.position;
 	}
@@ -23,29 +21,25 @@ public class Movement : MonoBehaviour {
 			RaycastHit hit = new RaycastHit();
 			
 			if(Physics.Raycast(ray, out hit)) {
-				closeEnough = false;
 				destination = hit.point;
 				destination.y = transform.position.y;
 			}
 		}
 		
-		if (!closeEnough) {
-			if( Vector3.Distance(transform.position, destination) < tolerance) {
-				closeEnough = true;
-				transform.position = prevPosition;
-				destination = transform.position;
-			}
-			else {
-				prevPosition = transform.position;
-				transform.LookAt(destination);
-				transform.Translate(Vector3.forward * Time.deltaTime * speed);
-			}
+		//Debug.Log("Position " + transform.position);
+		
+		if( Vector3.Distance(transform.position, destination) < tolerance) {
+			transform.position = prevPosition;
+			destination = transform.position;
+		}
+		else {
+			prevPosition = transform.position;
+			transform.LookAt(destination);
+			transform.Translate(Vector3.forward * Time.deltaTime * speed);
 		}
 	}
-	int timesCollided = 0;
+	
 	void OnCollisionEnter(Collision theCollision) {
-		Debug.Log("Collided with " + theCollision.gameObject.name + timesCollided++);
-		closeEnough = true;
 		transform.position = prevPosition;
 		destination = transform.position;
 	}	

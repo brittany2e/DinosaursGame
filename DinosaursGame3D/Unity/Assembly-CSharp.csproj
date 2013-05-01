@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{2662B409-6332-1E56-D797-C9025C53BDD6}</ProjectGuid>
+	<ProjectGuid>{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,23 +44,20 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\iTween\Plugins\iTween.cs" />
-     <Compile Include="Assets\Plugins\iTween\Sample\MoveSample.cs" />
-     <Compile Include="Assets\Plugins\iTween\Sample\RotateSample.cs" />
-     <Compile Include="Assets\Plugins\iTween\Sample\SampleInfo.cs" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
-     <Compile Include="Assets\Standard Assets\Scripts\Camera Scripts\StartBonus.cs" />
-     <Compile Include="Assets\Standard Assets\Scripts\Camera Scripts\ZoomIn.cs" />
-     <Compile Include="Assets\Standard Assets\Scripts\ClickToMove.cs" />
-     <Compile Include="Assets\Standard Assets\Scripts\DebugStreamer.cs" />
-     <Compile Include="Assets\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
-     <Compile Include="Assets\Standard Assets\Scripts\Movement.cs" />
-     <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
-     <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
-     <None Include="Assets\Plugins\iTween\ReadMe!\ReadMe!.txt" />
+     <Compile Include="Assets\iTween\Plugins\iTween.cs" />
+     <Compile Include="Assets\iTween\Sample\MoveSample.cs" />
+     <Compile Include="Assets\iTween\Sample\RotateSample.cs" />
+     <Compile Include="Assets\iTween\Sample\SampleInfo.cs" />
+     <None Include="Assets\iTween\ReadMe!\ReadMe!.txt" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Character Controllers\NewShader.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{2662B409-6332-1E56-D797-C9025C53BDD6}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{4464F9EF-777D-E971-944B-0D2B43AA417D}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Scripts\StartBonus.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Scripts\Camera Scripts\ZoomIn.cs">
     <Files>
-      <File FileName="Assets\Standard Assets\Scripts\StartBonus.cs" Line="35" Column="67" />
-      <File FileName="Assets\Standard Assets\Scripts\Movement.cs" Line="28" Column="4" />
-      <File FileName="Assets\Standard Assets\Scripts\DebugStreamer.cs" Line="18" Column="28" />
+      <File FileName="Assets\Standard Assets\Scripts\Camera Scripts\ZoomIn.cs" Line="54" Column="2" />
+      <File FileName="Assets\Standard Assets\Scripts\ClickToMove.cs" Line="29" Column="49" />
+      <File FileName="Assets\Plugins\iTween\Sample\MoveSample.cs" Line="7" Column="116" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
