@@ -47,19 +47,24 @@ public class ZoomIn : MonoBehaviour {
         {
             Debug.Log("S" + farPos);
             //iTween.MoveTo(Camera.mainCamera, iTween.Hash("from", targetPos, "to", zoomedOut));
-			iTween.MoveTo(camera, iTween.Hash("x", farPos.x, "y", farPos.y, "z", farPos.z, "time", 3.0f));
 			iTween.RotateTo(camera, new Vector3(farRot.eulerAngles.x, farRot.eulerAngles.y, farRot.eulerAngles.z), 3.0f);
-        }
+        	iTween.MoveTo(camera, iTween.Hash("x", farPos.x, "y", farPos.y, "z", farPos.z, "time", 3.0f));
+			
+		}
 	}
 	
 	void OnTriggerEnter(Collider other) {
-        if(other.gameObject == player) {
+        Debug.Log("Triggered " + other.name);
+		
+		if(other.gameObject == player) {
 			Transform thirdPersonView = player.transform.Find("ThirdPersonCamera").transform; //player.transform.position - player.transform.forward;
 			if(thirdPersonView != null){
 				closePos = thirdPersonView.position;
 				closeRot = thirdPersonView.rotation;
 				
 				// Glide the camera
+				//iTween.ValueTo(camera, iTween.Hash ("from", camera.transform, "to", thirdPersonView.transform));
+			
 				iTween.RotateTo(camera, new Vector3(closeRot.eulerAngles.x, closeRot.eulerAngles.y, closeRot.eulerAngles.z), 3.0f);
         		iTween.MoveTo(camera, iTween.Hash("x", closePos.x, "y", closePos.y, "z", closePos.z, "time", 3.0f));
 			}
