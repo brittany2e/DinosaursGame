@@ -39,8 +39,16 @@ public class ClickToMove : MonoBehaviour {
 		}
 	}
 	
+	int count=0;
 	void OnCollisionEnter(Collision theCollision) {
+		Debug.Log ("Collision " + count++);
 		transform.position = prevPosition;
 		destination = transform.position;
 	}	
+	
+	void OnTriggerEnter(Collider other) {
+		Debug.Log ("New Trigger " + count++);
+		transform.position = prevPosition;
+		destination = transform.position;
+	}
 }
